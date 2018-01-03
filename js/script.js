@@ -6,8 +6,8 @@ $(document).ready(() => {
     });
 });
 
-function getMovies(searchText){
-    axios.get('http://www.omdbapi.com/?s='+searchText+'&apikey=10ef4d3b').then((response) => {
+function getMovies(searchText){  //search to grab movies and display output in a grid system
+    axios.get('http://www.omdbapi.com/?s='+searchText+'&apikey=').then((response) => {
       console.log(response);
       let movies = response = response.data.Search;
       let output = '';
@@ -30,13 +30,13 @@ function getMovies(searchText){
 });
 }
 
-function movieSelected(id){
+function movieSelected(id){  //grabs the movie id to display in movie.html
     sessionStorage.setItem('movieId', id);
     window.location = 'movie.html';
     return false;
 }
 
-function getMovie(){
+function getMovie(){  //full movie information for the movie.html page
     let movieId = sessionStorage.getItem('movieId');
 
     axios.get('http://www.omdbapi.com/?i='+movieId+'&apikey=10ef4d3b').then((response) => {
